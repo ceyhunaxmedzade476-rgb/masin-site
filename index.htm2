@@ -1,0 +1,108 @@
+<!-- 1. CSS QİSMİ 
+Bunu saytınızın <head> hissəsindəki <style> teqləri arasına 
+və ya əgər ayrıca .css faylınız varsa, onun içinə əlavə edin -->
+<style>
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    position: relative;
+    padding-top: 66.66%; /* Şəkillərin ölçüsünü eyniləşdirir */
+}
+
+.gallery-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1); /* Üzərinə gələndə böyümə effekti */
+}
+
+.item-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    padding: 30px 20px 20px;
+    color: #fff;
+    text-align: left;
+    pointer-events: none;
+}
+
+.item-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    font-family: sans-serif;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4CAF50; /* Yaşıl qiymət vurgusu */
+    font-family: sans-serif;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    margin: 0;
+}
+</style>
+
+
+<!-- 2. HTML QİSMİ 
+Bunu saytınızda maşınların görünməsini istədiyiniz yerə (<body> içinə) əlavə edin -->
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1590362891991-f76150b0cd9f?auto=format&fit=crop&w=600&q=80" alt="Toyota Prius 2011">
+        <div class="item-info">
+            <h3>Toyota Prius 2011</h3>
+            <p class="price">12,500 AZN</p>
+        </div>
+    </div>
+    
+    <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fd?auto=format&fit=crop&w=600&q=80" alt="Toyota Prius 2012">
+        <div class="item-info">
+            <h3>Toyota Prius 2012</h3>
+            <p class="price">13,200 AZN</p>
+        </div>
+    </div>
+    
+    <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=600&q=80" alt="Toyota Prius 2013">
+        <div class="item-info">
+            <h3>Toyota Prius 2013</h3>
+            <p class="price">14,100 AZN</p>
+        </div>
+    </div>
+    
+    <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=600&q=80" alt="Toyota Prius 2014">
+        <div class="item-info">
+            <h3>Toyota Prius 2014</h3>
+            <p class="price">15,000 AZN</p>
+        </div>
+    </div>
+    
+    <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1616423640778-28d1b53229bd?auto=format&fit=crop&w=600&q=80" alt="Toyota Prius 2015">
+        <div class="item-info">
+            <h3>Toyota Prius 2015</h3>
+            <p class="price">16,500 AZN</p>
+        </div>
+    </div>
+</div>
