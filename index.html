@@ -1,349 +1,112 @@
 <!DOCTYPE html>
-<html lang="az">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toyota Prius (2011-2015)</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <title>Prius Elanları</title>
 
-        body {
-            background: linear-gradient(135deg, #ffffff, #d4eaf5);
-            color: #333333;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
-            min-height: 100vh;
-        }
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #111;
+      color: white;
+      text-align: center;
+    }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            margin-top: 20px;
-        }
+    h1 {
+      margin-top: 20px;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            color: #1b4b6b;
-            margin-bottom: 10px;
-        }
-        
-        header p {
-            font-size: 1.1rem;
-            color: #555;
-        }
+    .car {
+      display: inline-block;
+      margin: 15px;
+      background: #222;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .car:hover {
+      transform: scale(1.05);
+    }
 
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            position: relative;
-            padding-top: 66.66%; /* 3:2 Aspect Ratio */
-            background-color: #f9f9f9;
-        }
+    .car img {
+      width: 250px;
+      border-radius: 10px;
+    }
 
-        .gallery-item img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* şəkillərin kənarını doldurması üçün */
-            transition: transform 0.4s ease;
-        }
+    /* popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+    }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
+    .popup-content {
+      background: white;
+      color: black;
+      width: 320px;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+    }
 
-        .item-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 30px 20px 20px;
-            color: #fff;
-            text-align: left;
-            pointer-events: none;
-        }
-
-        .item-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 999; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.6); 
-            backdrop-filter: blur(5px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal.show {
-            display: flex;
-            opacity: 1;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: auto;
-            padding: 0;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 800px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-            transform: translateY(-20px);
-            transition: transform 0.3s ease;
-        }
-
-        .modal.show .modal-content {
-            transform: translateY(0);
-        }
-
-        .close {
-            color: #fff;
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 10;
-            text-shadow: 0 0 5px rgba(0,0,0,0.8);
-        }
-
-        .close:hover {
-            color: #ffd700;
-        }
-
-        .modal-body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        @media (min-width: 768px) {
-            .modal-body {
-                flex-direction: row;
-            }
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        @media (min-width: 768px) {
-            .modal-image {
-                width: 50%;
-                height: 400px;
-            }
-        }
-
-        .modal-details {
-            padding: 30px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        @media (min-width: 768px) {
-            .modal-details {
-                width: 50%;
-            }
-        }
-
-        .modal-details h2 {
-            font-size: 1.8rem;
-            color: #1b4b6b;
-            margin-bottom: 10px;
-        }
-
-        .modal-price {
-            font-size: 1.6rem;
-            color: #4CAF50;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .modal-info {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            margin-bottom: 25px;
-        }
-
-        .modal-info span {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .modal-btn {
-            padding: 12px 24px;
-            background-color: #1b4b6b;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            text-align: center;
-        }
-
-        .modal-btn:hover {
-            background-color: #12344d;
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    button {
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
 
-    <header>
-        <h1>Toyota Prius (2011-2015)</h1>
-        <p>Əsl Prius modellərinə toxunaraq ətraflı məlumat və qiymətlərini görün.</p>
-    </header>
+<h1>Prius Elanları (2011 - 2015)</h1>
 
-    <div class="gallery">
-        <!-- İtem 1 -->
-        <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius, 2011" data-price="11 000 AZN" data-info="<span>Şəhər:</span> Bakı<br><span>Bazar:</span> Amerika rəsmi<br><span>Ban növü:</span> Hetçbek<br><span>Yürüş:</span> 172 766 km<br><span>Rəng:</span> Qırmızı<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> Vuruğu yoxdur, rənglənməyib." data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/2012_Toyota_Prius_v_Three_--_12-22-2011.jpg/800px-2012_Toyota_Prius_v_Three_--_12-22-2011.jpg">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/2012_Toyota_Prius_v_Three_--_12-22-2011.jpg/800px-2012_Toyota_Prius_v_Three_--_12-22-2011.jpg" alt="Toyota Prius 2011 Qırmızı">
-            <div class="item-info">
-                <h3>Toyota Prius, 2011</h3>
-            </div>
-        </div>
-        
-        <!-- İtem 2 -->
-        <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius, 2011" data-price="14 800 AZN" data-info="<span>Şəhər:</span> Bakı<br><span>Bazar:</span> Amerika rəsmi<br><span>Ban növü:</span> Hetçbek<br><span>Yürüş:</span> 508 158 km<br><span>Rəng:</span> Yaş asfalt<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> Vuruğu yoxdur, kosmetik xərci yoxdur." data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Toyota_Prius_III.jpg/800px-Toyota_Prius_III.jpg">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Toyota_Prius_III.jpg/800px-Toyota_Prius_III.jpg" alt="Toyota Prius 2011 Yaş asfalt">
-            <div class="item-info">
-                <h3>Toyota Prius, 2011</h3>
-            </div>
-        </div>
+<!-- MAŞINLAR -->
+<div class="car" onclick="openPopup('Prius 2011', '8500$', '2011 model, yaxşı vəziyyət, az sürülüb')">
+  <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
+  <h3>Prius 2011</h3>
+  <p>8500$</p>
+</div>
 
-        <!-- İtem 3 -->
-        <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius V, 2011" data-price="15 300 AZN" data-info="<span>Şəhər:</span> Sumqayıt<br><span>Bazar:</span> Amerika<br><span>Ban növü:</span> Miniven<br><span>Yürüş:</span> 246 000 km<br><span>Rəng:</span> Gümüşü<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> İdeal vəziyyətdə, geniş baqaj." data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/2012_Toyota_Prius_v_--_04-18-2012.JPG/800px-2012_Toyota_Prius_v_--_04-18-2012.JPG">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/2012_Toyota_Prius_v_--_04-18-2012.JPG/800px-2012_Toyota_Prius_v_--_04-18-2012.JPG" alt="Toyota Prius V 2011">
-            <div class="item-info">
-                <h3>Toyota Prius V, 2011</h3>
-            </div>
-        </div>
+<div class="car" onclick="openPopup('Prius 2013', '9500$', '2013 model, ekonom maşın, ideal vəziyyət')">
+  <img src="https://images.unsplash.com/photo-1494905998402-395d579af36f">
+  <h3>Prius 2013</h3>
+  <p>9500$</p>
+</div>
 
-        <!-- İtem 4 -->
-        <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius, 2011" data-price="15 500 AZN" data-info="<span>Şəhər:</span> Gəncə<br><span>Bazar:</span> Yaponiya<br><span>Ban növü:</span> Hetçbek<br><span>Yürüş:</span> 462 844 km<br><span>Rəng:</span> Qara<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> Vuruğu yoxdur, orijinal ehtiyat hissələri." data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg/800px-2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg/800px-2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg" alt="Toyota Prius 2011 Qara">
-            <div class="item-info">
-                <h3>Toyota Prius, 2011</h3>
-            </div>
-        </div>
+<div class="car" onclick="openPopup('Prius 2015', '11000$', '2015 model, full vəziyyət, təmiz maşın')">
+  <img src="https://images.unsplash.com/photo-1511910849309-0dffb8785146">
+  <h3>Prius 2015</h3>
+  <p>11000$</p>
+</div>
 
-        <!-- İtem 5 -->
-        <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius, 2013" data-price="16 000 AZN" data-info="<span>Şəhər:</span> Bakı<br><span>Bazar:</span> Avropa<br><span>Ban növü:</span> Hetçbek<br><span>Yürüş:</span> 215 000 km<br><span>Rəng:</span> Ağ<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> Rənglənməyib (Bez kraska)." data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg/800px-2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg/800px-2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg" alt="Toyota Prius 2013 Ağ">
-            <div class="item-info">
-                <h3>Toyota Prius, 2013</h3>
-            </div>
-        </div>
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h2 id="title"></h2>
+    <p id="price"></p>
+    <p id="desc"></p>
+    <button onclick="closePopup()">Bağla</button>
+  </div>
+</div>
 
-        <!-- İtem 6 -->
-        <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius, 2015" data-price="18 500 AZN" data-info="<span>Şəhər:</span> Bakı<br><span>Bazar:</span> Amerika<br><span>Ban növü:</span> Hetçbek<br><span>Yürüş:</span> 150 000 km<br><span>Rəng:</span> Göy<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> Full komplektasiya, çox səliqəli idarə olunub." data-img="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/2010_Toyota_Prius.jpg/800px-2010_Toyota_Prius.jpg">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/2010_Toyota_Prius.jpg/800px-2010_Toyota_Prius.jpg" alt="Toyota Prius 2015 Göy">
-            <div class="item-info">
-                <h3>Toyota Prius, 2015</h3>
-            </div>
-        </div>
-    </div>
+<script>
+function openPopup(title, price, desc) {
+  document.getElementById("popup").style.display = "block";
+  document.getElementById("title").innerText = title;
+  document.getElementById("price").innerText = "Qiymət: " + price;
+  document.getElementById("desc").innerText = desc;
+}
 
-    <!-- Modal (Popup Pəncərəsi) -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div class="modal-body">
-                <img id="modalImg" class="modal-image" src="" alt="Prius">
-                <div class="modal-details">
-                    <h2 id="modalTitle">Maşın Adı</h2>
-                    <div id="modalPrice" class="modal-price">Qiymət</div>
-                    <div id="modalInfo" class="modal-info">
-                        Məlumatlar
-                    </div>
-                    <button class="modal-btn" onclick="alert('Satış təmsilçisi ilə əlaqə yaradılır...')">Əlaqə saxla</button>
-                </div>
-            </div>
-        </div>
-    </div>
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+</script>
 
-    <!-- JavaScript Kodu -->
-    <script>
-        var modal = document.getElementById("myModal");
-
-        function openModal(element) {
-            // Şəklin url, başlıq, qiymət və məlumatlarını HTML teqindən alırıq
-            var imgUrl = element.getAttribute("data-img");
-            var title = element.getAttribute("data-title");
-            var price = element.getAttribute("data-price");
-            var info = element.getAttribute("data-info");
-
-            // Modalın içinə yazırıq
-            document.getElementById("modalImg").src = imgUrl;
-            document.getElementById("modalTitle").innerText = title;
-            document.getElementById("modalPrice").innerText = price;
-            document.getElementById("modalInfo").innerHTML = info;
-
-            // Modalı açırıq
-            modal.style.display = "flex";
-            setTimeout(function() {
-                modal.classList.add("show");
-            }, 10);
-        }
-
-        function closeModal() {
-            modal.classList.remove("show");
-            setTimeout(function() {
-                modal.style.display = "none";
-            }, 300); // 0.3 saniyəlik bağlanma effekti
-        }
-
-        // Qırağa basanda bağlansın
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
 </body>
 </html>
