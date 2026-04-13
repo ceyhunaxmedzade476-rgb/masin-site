@@ -7,9 +7,19 @@
     body {
       margin: 0;
       font-family: Arial;
-      background: #111;
       color: white;
       text-align: center;
+
+      /* 🚗 ARXA FON ŞƏKİL */
+      background: url("https://images.unsplash.com/photo-1494905998402-395d579af36f") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* qaranlıq overlay ki yazılar görünsün */
+    .overlay {
+      background: rgba(0,0,0,0.7);
+      min-height: 100vh;
+      padding-bottom: 50px;
     }
 
     h1 {
@@ -22,14 +32,10 @@
       border-radius: 5px;
     }
 
-    .container {
-      padding: 10px;
-    }
-
     .car {
       display: inline-block;
       margin: 15px;
-      background: #222;
+      background: rgba(0,0,0,0.8);
       padding: 10px;
       border-radius: 10px;
       cursor: pointer;
@@ -73,9 +79,10 @@
 
 <body>
 
+<div class="overlay">
+
 <h1>Prius Elanları</h1>
 
-<!-- FILTER -->
 <select id="filter" onchange="filterCars()">
   <option value="all">Hamısı</option>
   <option value="2011">2011</option>
@@ -83,25 +90,27 @@
   <option value="2015">2015</option>
 </select>
 
-<div class="container">
+<div>
 
-  <div class="car" data-year="2011" onclick="openPopup('Prius 2011','8500$','Yaxşı vəziyyət','https://images.unsplash.com/photo-1503376780353-7e6692767b70')">
+  <div class="car" data-year="2011" onclick="openPopup('Prius 2011','8500$','Yaxşı vəziyyət')">
     <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
     <h3>Prius 2011</h3>
     <p>8500$</p>
   </div>
 
-  <div class="car" data-year="2013" onclick="openPopup('Prius 2013','9500$','Ekonom və ideal','https://images.unsplash.com/photo-1494905998402-395d579af36f')">
+  <div class="car" data-year="2013" onclick="openPopup('Prius 2013','9500$','Ekonom və ideal')">
     <img src="https://images.unsplash.com/photo-1494905998402-395d579af36f">
     <h3>Prius 2013</h3>
     <p>9500$</p>
   </div>
 
-  <div class="car" data-year="2015" onclick="openPopup('Prius 2015','11000$','Full vəziyyət','https://images.unsplash.com/photo-1511910849309-0dffb8785146')">
+  <div class="car" data-year="2015" onclick="openPopup('Prius 2015','11000$','Full vəziyyət')">
     <img src="https://images.unsplash.com/photo-1511910849309-0dffb8785146">
     <h3>Prius 2015</h3>
     <p>11000$</p>
   </div>
+
+</div>
 
 </div>
 
@@ -116,7 +125,7 @@
 </div>
 
 <script>
-function openPopup(title, price, desc, img) {
+function openPopup(title, price, desc) {
   document.getElementById("popup").style.display = "block";
   document.getElementById("title").innerText = title;
   document.getElementById("price").innerText = "Qiymət: " + price;
@@ -132,14 +141,10 @@ function filterCars() {
   let cars = document.querySelectorAll(".car");
 
   cars.forEach(car => {
-    if (value === "all") {
+    if (value === "all" || car.getAttribute("data-year") === value) {
       car.style.display = "inline-block";
     } else {
-      if (car.getAttribute("data-year") === value) {
-        car.style.display = "inline-block";
-      } else {
-        car.style.display = "none";
-      }
+      car.style.display = "none";
     }
   });
 }
