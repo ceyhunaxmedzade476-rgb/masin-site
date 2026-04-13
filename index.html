@@ -12,7 +12,8 @@
         }
 
         body {
-            background: linear-gradient(135deg, #ffffff, #d4eaf5);
+            background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.9)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/2012_Toyota_Prius_v_Three_--_12-22-2011.jpg/1920px-2012_Toyota_Prius_v_Three_--_12-22-2011.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #333333;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 20px;
@@ -51,7 +52,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             position: relative;
-            padding-top: 66.66%;
+            padding-top: 66.66%; /* 3:2 Aspect Ratio */
             background-color: #f9f9f9;
         }
 
@@ -95,7 +96,7 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
         }
 
-        /* Modal Pəncərəsi */
+        /* Modal Styles */
         .modal {
             display: none; 
             position: fixed; 
@@ -164,7 +165,7 @@
             }
         }
 
-        /* Modal İçindəki Qalereya (Slider) */
+        /* Modal Gallery / Slider */
         .modal-gallery {
             width: 100%;
             display: flex;
@@ -195,9 +196,10 @@
             overflow-x: auto;
             gap: 10px;
             padding: 15px;
-            background: #333; 
+            background: #333; /* Tünd fon ki şəkillər seçilsin */
         }
 
+        /* Skroll bari gizletmek ucun (Scrollbar styling) */
         .thumbnail-container::-webkit-scrollbar {
             height: 6px;
         }
@@ -303,7 +305,8 @@
     </header>
 
     <div class="gallery">
-        <!-- 1ci Maşın -->
+        <!-- İtem 1 -->
+        <!-- data-images içərisində 5 ədəd şəkil linki var, vergüllə ayrılıb -->
         <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius, 2011" data-price="11 000 AZN" 
         data-info="<span>Şəhər:</span> Bakı<br><span>Bazar:</span> Amerika rəsmi<br><span>Ban növü:</span> Hetçbek<br><span>Yürüş:</span> 172 766 km<br><span>Rəng:</span> Qırmızı<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> Vuruğu yoxdur, rənglənməyib." 
         data-images="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/2012_Toyota_Prius_v_Three_--_12-22-2011.jpg/800px-2012_Toyota_Prius_v_Three_--_12-22-2011.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Toyota_Prius_III.jpg/800px-Toyota_Prius_III.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/2012_Toyota_Prius_v_--_04-18-2012.JPG/800px-2012_Toyota_Prius_v_--_04-18-2012.JPG,https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg/800px-2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg/800px-2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg">
@@ -314,7 +317,7 @@
             </div>
         </div>
         
-        <!-- 2ci Maşın -->
+        <!-- İtem 2 -->
         <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius, 2011" data-price="14 800 AZN" 
         data-info="<span>Şəhər:</span> Bakı<br><span>Bazar:</span> Amerika rəsmi<br><span>Ban növü:</span> Hetçbek<br><span>Yürüş:</span> 508 158 km<br><span>Rəng:</span> Yaş asfalt<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> Vuruğu yoxdur, kosmetik xərci yoxdur." 
         data-images="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Toyota_Prius_III.jpg/800px-Toyota_Prius_III.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg/800px-2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/2012_Toyota_Prius_v_Three_--_12-22-2011.jpg/800px-2012_Toyota_Prius_v_Three_--_12-22-2011.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg/800px-2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/2012_Toyota_Prius_v_--_04-18-2012.JPG/800px-2012_Toyota_Prius_v_--_04-18-2012.JPG">
@@ -325,7 +328,7 @@
             </div>
         </div>
 
-        <!-- 3cü Maşın -->
+        <!-- İtem 3 -->
         <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius V, 2011" data-price="15 300 AZN" 
         data-info="<span>Şəhər:</span> Sumqayıt<br><span>Bazar:</span> Amerika<br><span>Ban növü:</span> Miniven<br><span>Yürüş:</span> 246 000 km<br><span>Rəng:</span> Gümüşü<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> İdeal vəziyyətdə, geniş baqaj." 
         data-images="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/2012_Toyota_Prius_v_--_04-18-2012.JPG/800px-2012_Toyota_Prius_v_--_04-18-2012.JPG,https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg/800px-2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/2012_Toyota_Prius_v_Three_--_12-22-2011.jpg/800px-2012_Toyota_Prius_v_Three_--_12-22-2011.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg/800px-2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Toyota_Prius_III.jpg/800px-Toyota_Prius_III.jpg">
@@ -336,7 +339,7 @@
             </div>
         </div>
 
-        <!-- 4cü Maşın -->
+        <!-- İtem 4 -->
         <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius, 2011" data-price="15 500 AZN" 
         data-info="<span>Şəhər:</span> Gəncə<br><span>Bazar:</span> Yaponiya<br><span>Ban növü:</span> Hetçbek<br><span>Yürüş:</span> 462 844 km<br><span>Rəng:</span> Qara<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> Vuruğu yoxdur, orijinal ehtiyat hissələri." 
         data-images="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg/800px-2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/2012_Toyota_Prius_v_--_04-18-2012.JPG/800px-2012_Toyota_Prius_v_--_04-18-2012.JPG,https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg/800px-2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/2012_Toyota_Prius_v_Three_--_12-22-2011.jpg/800px-2012_Toyota_Prius_v_Three_--_12-22-2011.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Toyota_Prius_III.jpg/800px-Toyota_Prius_III.jpg">
@@ -347,7 +350,7 @@
             </div>
         </div>
 
-        <!-- 5ci Maşın -->
+        <!-- İtem 5 -->
         <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius, 2013" data-price="16 000 AZN" 
         data-info="<span>Şəhər:</span> Bakı<br><span>Bazar:</span> Avropa<br><span>Ban növü:</span> Hetçbek<br><span>Yürüş:</span> 215 000 km<br><span>Rəng:</span> Ağ<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> Rənglənməyib (Bez kraska)." 
         data-images="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg/800px-2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Toyota_Prius_III.jpg/800px-Toyota_Prius_III.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/2012_Toyota_Prius_v_--_04-18-2012.JPG/800px-2012_Toyota_Prius_v_--_04-18-2012.JPG,https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg/800px-2013-2015_Toyota_Prius_%28ZVW30R%29_liftback_%282015-11-13%29_01.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/2012_Toyota_Prius_v_Three_--_12-22-2011.jpg/800px-2012_Toyota_Prius_v_Three_--_12-22-2011.jpg">
@@ -358,7 +361,7 @@
             </div>
         </div>
 
-        <!-- 6cı Maşın -->
+        <!-- İtem 6 -->
         <div class="gallery-item" onclick="openModal(this)" data-title="Toyota Prius, 2015" data-price="18 500 AZN" 
         data-info="<span>Şəhər:</span> Bakı<br><span>Bazar:</span> Amerika<br><span>Ban növü:</span> Hetçbek<br><span>Yürüş:</span> 150 000 km<br><span>Rəng:</span> Göy<br><span>Mühərrik:</span> 1.8 L / 99 a.g. / Hibrid<br><span>Vəziyyəti:</span> Full komplektasiya, çox səliqəli idarə olunub." 
         data-images="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/2010_Toyota_Prius.jpg/800px-2010_Toyota_Prius.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/2012_Toyota_Prius_v_Three_--_12-22-2011.jpg/800px-2012_Toyota_Prius_v_Three_--_12-22-2011.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Toyota_Prius_III.jpg/800px-Toyota_Prius_III.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/2012_Toyota_Prius_v_--_04-18-2012.JPG/800px-2012_Toyota_Prius_v_--_04-18-2012.JPG,https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg/800px-2012_Toyota_Prius_%28ZVW30R_MY12%29_liftback_%282015-05-29%29_01.jpg">
@@ -370,19 +373,21 @@
         </div>
     </div>
 
-    <!-- Modal (Popup) -->
+    <!-- Modal (Popup) - Yenilənmiş Slider versiyası -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <div class="modal-body">
                 
+                <!-- Şəkillər bölməsi (Əsas şəkil və kiçik şəkillər) -->
                 <div class="modal-gallery">
                     <img id="modalImg" class="modal-image" src="" alt="Prius">
                     <div class="thumbnail-container" id="thumbContainer">
-                        <!-- Şəkillər bura gələcək -->
+                        <!-- Kiçik şəkillər bura JS ilə əlavə olunacaq -->
                     </div>
                 </div>
 
+                <!-- Məlumat bölməsi -->
                 <div class="modal-details">
                     <h2 id="modalTitle">Maşın Adı</h2>
                     <div id="modalPrice" class="modal-price">Qiymət</div>
@@ -404,16 +409,20 @@
             var price = element.getAttribute("data-price");
             var info = element.getAttribute("data-info");
             
+            // Verilənlərdən vergüllə ayrılmış şəkilləri alıb massivə çeviririk
             var imagesText = element.getAttribute("data-images");
             var imagesArray = imagesText ? imagesText.split(',') : [element.getAttribute("data-img")];
 
+            // Mətnləri yazırıq
             document.getElementById("modalTitle").innerText = title;
             document.getElementById("modalPrice").innerText = price;
             document.getElementById("modalInfo").innerHTML = info;
 
+            // Əsas şəkli birinci şəkil edirik
             var mainImg = document.getElementById("modalImg");
             mainImg.src = imagesArray[0];
 
+            // Kiçik (thumbnail) şəkillər üçün div-i təmizləyib yenidən doldururuq
             var thumbContainer = document.getElementById("thumbContainer");
             thumbContainer.innerHTML = "";
 
@@ -421,16 +430,23 @@
                 let img = document.createElement("img");
                 img.src = imgUrl.trim();
                 
+                // Birinci şəkil default olaraq seçilmiş kimi görünsün
                 if(index === 0) img.classList.add("active");
                 
                 img.onclick = function() {
+                    // Əsas şəkli dəyişdirik
                     mainImg.src = this.src;
+                    
+                    // Bütün kiçik şəkillərdən "active" sinfini silirik
                     document.querySelectorAll(".thumbnail-container img").forEach(el => el.classList.remove("active"));
+                    
+                    // Kliklənən şəkilə "active" sinfi əlavə edirik
                     this.classList.add("active");
                 }
                 thumbContainer.appendChild(img);
             });
 
+            // Modalı göstəririk
             modal.style.display = "flex";
             setTimeout(function() {
                 modal.classList.add("show");
